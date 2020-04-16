@@ -12,8 +12,8 @@ class Player():
       numberOfDiceLeftToRoll = 5 - len(diceValuesToKeep)
       numberOfRollsTaken += 1
       print(f'---- ROUND {numberOfRollsTaken} ----')
-      newDiceValues = self.rollDice(numberOfDiceLeftToRoll)
-      diceValuesToKeep += self.chooseDiceToKeep(newDiceValues) if numberOfRollsTaken < 3 else newDiceValues
+      newDiceValues = diceValuesToKeep + self.rollDice(numberOfDiceLeftToRoll)
+      diceValuesToKeep = self.chooseDiceToKeep(newDiceValues) if numberOfRollsTaken < 3 else newDiceValues
 
     print(f"Your final dice are: {', '.join(map(str, diceValuesToKeep))}")
 
@@ -26,6 +26,7 @@ class Player():
   
   def chooseDiceToKeep(self, diceValues):
     diceValuesToKeep = []
+    print(f"Your dice now are: {', '.join(map(str, diceValues))}")
 
     for value in diceValues:
       userInputIsValid = False
